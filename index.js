@@ -16,6 +16,27 @@ io.on('connection', (socket) => {
     console.log('A new client is connected');
 });
 
+const MessageSchema = new mongoose.Schema({
+    author: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String, // Assuming the image will be stored as a URL
+    },
+    video: {
+        type: String, // Assuming the video will be stored as a URL
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to the database');
